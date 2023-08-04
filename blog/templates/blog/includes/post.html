@@ -1,0 +1,24 @@
+{% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static "blog/post.css" %}">
+{% endblock css_files %}
+
+{% comment %}
+merge pentru ca atunci cand accesez prin include un code snippet
+acest code snippet ia si datele ce le are si template-ul 
+{% endcomment %}
+<li>
+    <article class="post">
+        <a href="{% url "post-detail-page" post.slug%}">
+            <img src="{%static "blog/images/"|add:post.image %}" alt="{{post.title}}">
+            <div class="post-content">
+                <h3>{{ post.title|title }}</h3>
+                {% comment %} 
+                ca sa iau post["date"] din dictionar
+                aici se foloseste . 
+                {% endcomment %}
+                <p>{{ post.excerpt }}</p>
+            </div>
+        </a>
+    </article>
+</li>
